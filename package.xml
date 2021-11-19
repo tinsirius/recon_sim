@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>recon_sim</name>
+  <version>1.0.0</version>
+  <description>Simulation setup for Recycled Conveyor Belt Project</description>
+  <maintainer email="tin.tran@monash.edu">Tin Tran</maintainer>
+  <license>Apache 2.0</license>
+
+  <author>Tin Tran</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>xacro</exec_depend>
+</package>
+

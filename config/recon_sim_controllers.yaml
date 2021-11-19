@@ -1,0 +1,50 @@
+force_servo_controller:
+  type: recon_controllers/ForceServoController
+  arm_id: $(arg arm_id)
+  joint_names:
+    - $(arg arm_id)_joint1
+    - $(arg arm_id)_joint2
+    - $(arg arm_id)_joint3
+    - $(arg arm_id)_joint4
+    - $(arg arm_id)_joint5
+    - $(arg arm_id)_joint6
+    - $(arg arm_id)_joint7
+
+joint_position_controller:
+  type: recon_controllers/JointPositionController
+  p_gains: [900.0, 900.0, 900.0, 900.0, 375.0, 225.0, 100.0]
+  d_gains: [45.0, 45.0, 45.0, 45.0, 15.0, 15.0, 10.0]
+  arm_id: $(arg arm_id)
+  joint_names:
+    - $(arg arm_id)_joint1
+    - $(arg arm_id)_joint2
+    - $(arg arm_id)_joint3
+    - $(arg arm_id)_joint4
+    - $(arg arm_id)_joint5
+    - $(arg arm_id)_joint6
+    - $(arg arm_id)_joint7
+
+cartesian_pose_controller:
+  type: franka_example_controllers/CartesianImpedanceExampleController
+  arm_id: $(arg arm_id)
+  joint_names:
+    - $(arg arm_id)_joint1
+    - $(arg arm_id)_joint2
+    - $(arg arm_id)_joint3
+    - $(arg arm_id)_joint4
+    - $(arg arm_id)_joint5
+    - $(arg arm_id)_joint6
+    - $(arg arm_id)_joint7
+
+franka_state_controller:
+  type: franka_control/FrankaStateController
+  publish_rate: 30  # [Hz]
+  arm_id: $(arg arm_id)
+  joint_names:
+    - $(arg arm_id)_joint1
+    - $(arg arm_id)_joint2
+    - $(arg arm_id)_joint3
+    - $(arg arm_id)_joint4
+    - $(arg arm_id)_joint5
+    - $(arg arm_id)_joint6
+    - $(arg arm_id)_joint7
