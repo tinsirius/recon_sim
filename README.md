@@ -11,6 +11,11 @@ sudo apt update && sudo apt install -y \
 	python3-rosdep
 ```
 
+Install `opencv` (and contrib or ARUCO detection) if you haven't done so
+```
+python3 -m pip install opencv-python opencv-contrib-python
+```
+
 Pull all the required repo
 ```
 cd /path/to/your_ws
@@ -23,10 +28,10 @@ rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --skip
 Then build your workspace
 
 ```
-catkin_make -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/path/to/libfranka/build
+catkin build -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/path/to/libfranka/build
 ```
 
 To run the demo
 ```
-roslaunch recon_controllers recon_panda.launch controller:=joint_position_controller
+roslaunch recon_sim recon_panda.launch controller:=joint_position_controller
 ```
