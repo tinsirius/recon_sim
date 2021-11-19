@@ -15,7 +15,7 @@ Pull all the required repo
 ```
 cd /path/to/your_ws
 wstool init src
-wstool merge -t src https://raw.githubusercontent.com/tinsirius/recon_demo/master/sim.rosinstall
+wstool merge -t src https://raw.githubusercontent.com/tinsirius/recon_sim/master/recon_sim.rosinstall
 wstool update -t src
 rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --skip-keys libfranka
 ```
