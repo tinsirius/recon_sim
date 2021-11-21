@@ -125,7 +125,8 @@ def switch_controller(controller_name):
         active_controller = ''
         for controller in controllers.controller:
             if controller.state == 'running':
-                if 'state' not in controller.name:
+                # I mean I can use any() but there are only 2 so this is more readable, fight me!
+                if ('state' not in controller.name) and ('gripper' not in controller.name):
                     active_controller = controller.name
         if active_controller == controller_name:
             print("robot is already running " + controller_name)

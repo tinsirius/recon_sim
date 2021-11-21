@@ -6,14 +6,14 @@ package for simulating the Recycled Conveyor Belt Project
 Install a few dependencies for building
 ```
 sudo apt update && sudo apt install -y \
-	python3-wstool \
-	python3-catkin-tools \
-	python3-rosdep
+	python-wstool \
+	python-catkin-tools \
+	python-rosdep
 ```
 
 Install `opencv` (and contrib or ARUCO detection) if you haven't done so
 ```
-python3 -m pip install opencv-python opencv-contrib-python
+python -m pip install opencv-python opencv-contrib-python
 ```
 
 Pull all the required repo
