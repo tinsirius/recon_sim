@@ -46,9 +46,9 @@ class VisualServo:
 				cY = int((topLeft[1] + bottomRight[1]) / 2.0)
 				cx = width/2
 				cy = height/2
-				cv2.circle(original, (cX, cY), 4, (0, 0, 255), -1)
-				cv2.circle(original, (cx, cy), 4, (0, 0, 255), -1)
-				cv2.line(original, (cX, cY), (cx, cy), (255, 0, 0), 1)
+				cv2.circle(original, (int(cX), int(cY)), 4, (0, 0, 255), -1)
+				cv2.circle(original, (int(cx), int(cy)), 4, (0, 0, 255), -1)
+				cv2.line(original, (int(cX), int(cY)), (int(cx), int(cy)), (255, 0, 0), 1)
 				area = self.polygon_area(topLeft, topRight, bottomRight, bottomLeft)
 
 				wrench = WrenchStamped()

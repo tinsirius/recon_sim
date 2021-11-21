@@ -39,7 +39,7 @@ def move_delta_cartesian(delta_pose):
     current_orientation = current_transformation[0:3, 0:3]
     current_translation = current_transformation[0:3, 3]
     delta_angle = R.from_euler('xyz', delta_pose[3:], degrees=True)
-    target_angle = R.from_dcm(np.matmul(current_orientation, R.as_dcm(delta_angle))).as_quat()
+    target_angle = R.from_matrix(np.matmul(current_orientation, R.as_matrix(delta_angle))).as_quat()
     pub = rospy.Publisher('/panda/cartesian_pose_controller/equilibrium_pose', PoseStamped, queue_size=1)
     msg = PoseStamped()
     msg.pose.position.x = current_translation[0] + delta_pose[0]
