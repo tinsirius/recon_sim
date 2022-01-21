@@ -23,21 +23,21 @@
 
 	<link name="belt_visual">
 		<inertial>
-			<origin xyz="0 0 0.25" rpy="0 0 0" />
+			<origin xyz="0 0 ${height}" rpy="0 0 0" />
 			<mass value="71.953" />
 			<inertia ixx="7.5972" ixy="-1.394E-14" ixz="1.9328E-17" iyy="0.99673" iyz="-9.2056E-18" izz="8.1168" />
 		</inertial>
 		<visual>
-			<origin xyz="0 0 0.25" rpy="0 0 0" />
+			<origin xyz="0 0 ${height}" rpy="0 0 0" />
 			<geometry>
 				<box size="0.5 ${length} 0.05"/>
 			</geometry>
 			<material name="orange"/>
 		</visual>
 		<collision>
-			<origin xyz="0 0 0.125" rpy="0 0 0" />
+			<origin xyz="0 0 ${height/2}" rpy="0 0 0" />
 			<geometry>
-				<box size="0.5 ${length} 0.25"/>
+				<box size="0.5 ${length} ${height}"/>
 			</geometry>
 			<!-- <origin xyz="0.0 0.0 0" rpy="1.570796327 0.0 1.570796327"/>
 			<geometry>
@@ -59,7 +59,7 @@
 	</link> -->
 
 	<joint name="belt_joint" type="prismatic">
-		<origin xyz="0.0 0.0 0.275" rpy="0.0 0.0 0.0"/>
+		<origin xyz="0.0 0.0 ${height + 0.025}" rpy="0.0 0.0 0.0"/>
 		<parent link="belt_visual"/>
 		<child link="belt_moving"/>
 		<axis xyz="0 1 0"/>
