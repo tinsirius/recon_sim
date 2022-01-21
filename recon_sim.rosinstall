@@ -24,3 +24,8 @@
     local-name: realsense_ros
     uri: https://github.com/rickstaa/realsense-ros.git
     version: development-gazebo
+
+- git:
+    local-name: panda_utils_python
+    uri: https://github.com/tinsirius/panda_utils_python
+    version: main
