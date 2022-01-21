@@ -1,15 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
 
-  <xacro:arg name="arm_id" default="panda" /> <!-- Name of this panda -->
-  <xacro:arg name="hand"   default="false" /> <!-- Should a franka_gripper be mounted at the flange?" -->
-  <xacro:arg name="gazebo" default="false" /> <!-- Is the robot being simulated in gazebo?" -->
-
   <xacro:include filename="$(find franka_description)/robots/panda_arm.urdf.xacro" />
-  <!-- <xacro:manipulator arm_id="${arm_id}" hand="${hand}" gazebo="${gazebo}">
-  </xacro:manipulator> -->
+  
+  <!-- We have to set topic_ns because robot namespace does not carry over to camera namespace-->
+  <!-- We have to set name because that determine the link name, although you see 2 camera in gazebo, there really is only one camera-->
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
-  <xacro:sensor_d435 parent="${arm_id}_hand" publish_pointcloud="false">
+  <xacro:sensor_d435 parent="$(arg arm_id)_hand" topics_ns="$(arg robot_ns)/camera" name="$(arg arm_id)camera">
     <origin xyz="0.020 0 0.04" rpy="3.1415 -1.571 0"/>
   </xacro:sensor_d435>
 
