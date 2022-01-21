@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+
+ <arg name="robot_ns" 				default='/' 		doc="namespace for your robot" />
+ <arg name="paused" 					default='false' doc="This should be false if there is only 1 panda in the scene, true if you plan on having 2!" />
+ <arg name="arm_id" 					default='panda' doc="arm_id for the panda, mainly for the urdf name and link name" />
+ <arg name="conveyor_length"	default='1.5'		doc="length of the conveyor" />
+ <arg name="y"								default='0'			doc="Y coordinates of spawn" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <!-- Start paused, simulation will be started, when Pandas were loaded -->
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+	<group ns="$(arg robot_ns)">
+		<include file="$(find recon_sim)/launch/panda_camera.launch">
+			<arg name="arm_id"     value="$(arg arm_id)" />
+			<arg name="gazebo"     value="false" />
+			<arg name="paused"     value="$(arg paused)" />
+			<arg name="x"					 value="-0.6" />
+			<arg name="y"					 value="$(arg y)" />
+			<arg name="robot_ns"   value="$(arg robot_ns)" />
+			<arg name="controller" value="joint_position_controller" />
+			<arg name="loading_controller" value="
+				cartesian_pose_controller
+				force_servo_controller
+				" />
+			<arg name="rviz"	     value="false"/>
+		</include>
+	</group>
+
+	<group ns="conveyor">
+    <param name="conveyor_description"
+           command="xacro $(find recon_sim)/urdf/conveyor_recon.urdf.xacro length:=$(arg conveyor_length) height:=0.25">
+    </param>
+		<node name="conveyor_spawner" 
+          pkg="gazebo_ros" 
+          type="spawn_model" 
+          args="-param conveyor_description -urdf -model conveyor_belt"
+          respawn="false" 
+          output="screen" />
+	</group>
+
+	<node name="cube_spawner" pkg="recon_sim" type="demo.py" output="screen"/>
+
+</launch>

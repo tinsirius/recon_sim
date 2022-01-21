@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="robot_ns" 	default='/' 		doc="namespace for your robot" />
+  <arg name="arm_id" 		default='panda' doc="arm_id for the panda, mainly for the urdf name and link name" />
+  <arg name="y"					default='1.0'			doc="Y coordinates of spawn" />
+
+  <group ns="$(arg robot_ns)">
+    <include file="$(find recon_sim)/launch/panda_camera.launch">
+      <arg name="arm_id"     value="$(arg arm_id)" />
+      <arg name="y"          value="$(arg y)" />
+      <arg name="x"					 value="-0.6" />
+      <arg name="gazebo"     value="false" />
+      <arg name="paused"     value="false" />
+      <arg name="robot_ns"   value="$(arg robot_ns)" />
+			<arg name="controller" value="joint_position_controller" />
+			<arg name="loading_controller" value="
+				cartesian_pose_controller
+				force_servo_controller
+				" />
+      <arg name="rviz"	     value="false"/>
+    </include>
+  </group>
+
+</launch>
